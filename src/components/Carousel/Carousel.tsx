@@ -9,7 +9,7 @@ type CarouselProps = {
     data: apiProductType[];
 };
 
-const ClassName = "text-green-800 w-8 absolute top-0 h-full hover:bg-opacity-20 hover:bg-green-800";
+const buttonClassName = "text-green-800 w-8 absolute top-0 h-full hover:bg-opacity-20 hover:bg-green-800";
 const Carousel = ({ data }: CarouselProps) => {
     const [index, setindex] = useState(0);
     const prevAction = () => {
@@ -38,14 +38,14 @@ const Carousel = ({ data }: CarouselProps) => {
                 ))}
             </div>
             <button
-                className={ClassName}
+                className={buttonClassName}
                 style={{ right: 0 }}
                 onClick={nextAction}
             >
                 <RightChevronIcon />
             </button>
             <button
-                className={ClassName}
+                className={buttonClassName}
                 style={{ left: 0 }}
                 onClick={prevAction}
             >
