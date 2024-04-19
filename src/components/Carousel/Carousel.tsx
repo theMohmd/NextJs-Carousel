@@ -9,7 +9,8 @@ type CarouselProps = {
     data: apiProductType[];
 };
 
-const buttonClassName = "text-green-800 w-8 absolute top-0 h-full hover:bg-opacity-20 hover:bg-green-800";
+const buttonClassName =
+    "duration-200 text-green-800 w-8 absolute top-0 h-full focus-visible:bg-opacity-20 focus-visible:bg-green-800 hover:bg-opacity-20 hover:bg-green-800";
 const Carousel = ({ data }: CarouselProps) => {
     const [index, setindex] = useState(0);
     const prevAction = () => {
@@ -25,18 +26,7 @@ const Carousel = ({ data }: CarouselProps) => {
         });
     };
     return (
-        <div className="flex overflow-hidden relative p-5 px-8 w-full bg-white rounded-xl aspect-[2/3] max-w-[800px] md:aspect-[2]">
-            <div className="size-full [&>*]:grow-0 [&>*]:shrink-0 flex overflow-hidden">
-                {data.map((item) => (
-                    <div
-                        key={item.id}
-                        style={{ translate: `${-100 * index}%` }}
-                        className="duration-500 size-full"
-                    >
-                        <CarouselItem data={item} />
-                    </div>
-                ))}
-            </div>
+        <div className="flex overflow-hidden relative p-5 px-8 w-full bg-white rounded-xl max-w-[800px] md:aspect-[2]">
             <button
                 className={buttonClassName}
                 style={{ right: 0 }}
@@ -51,6 +41,20 @@ const Carousel = ({ data }: CarouselProps) => {
             >
                 <LeftChevronIcon />
             </button>
+            <div className="items-center [&>*]:grow-0 [&>*]:shrink-0 flex overflow-hidden">
+                {data.map((item, i) => (
+                    <div
+                        key={item.id}
+                        style={{
+                            translate: `${-100 * index}%`,
+                            visibility: i === index ? "visible" : "hidden",
+                        }}
+                        className="duration-500 size-full"
+                    >
+                        <CarouselItem data={item} />
+                    </div>
+                ))}
+            </div>
         </div>
     );
 };
